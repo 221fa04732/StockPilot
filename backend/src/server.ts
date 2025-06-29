@@ -1,0 +1,1 @@
+console.log("welcome to inventory management system")
