@@ -15,7 +15,7 @@ const deleteSupplier = (async(req : Request, res : Response)=>{
             }
         })
         res.status(201).json({
-            msg : "Supplier deleted"
+            msg : "Supplier info deleted"
         })
     }
     catch(e){
