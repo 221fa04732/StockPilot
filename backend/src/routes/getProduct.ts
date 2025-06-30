@@ -7,7 +7,7 @@ const getProduct = (async(req : Request, res : Response)=>{
     const page : number = Number(req.query.page)
     const searchWord : string = req.query.search as string
     try{
-        const limit= 2;
+        const limit= 20;
         const skip= limit*page
         const product = await prisma.product.findMany({
             where : {
