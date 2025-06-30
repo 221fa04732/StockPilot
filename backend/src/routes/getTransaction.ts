@@ -6,7 +6,7 @@ const prisma= new PrismaClient()
 const getTransaction = (async(req : Request, res : Response)=>{
     const page : number = Number(req.query.page)
     try{
-        const limit= 3;
+        const limit= 20;
         const skip= limit*page
         const transaction = await prisma.transactionHistory.findMany({
             skip: skip,
