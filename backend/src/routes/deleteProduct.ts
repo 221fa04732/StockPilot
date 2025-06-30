@@ -15,7 +15,7 @@ const deleteProduct = (async(req : Request, res : Response)=>{
             }
         })
         res.status(201).json({
-            msg : "Item deleted"
+            msg : "Product deleted"
         })
     }
     catch(e){

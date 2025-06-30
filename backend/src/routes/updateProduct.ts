@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { productSchema } from "../validate/productSchema";
 import { PrismaClient } from "../../src/generated/prisma";
 import { productType } from "../types/productType";
+import { productSchema } from "../validate/productSchema";
 
 const prisma= new PrismaClient()
 
-const addProduct = (async(req : Request, res : Response)=>{
+const updateProduct = (async(req : Request, res : Response)=>{
     const data : productType = req.body;
     try{
         const validate = productSchema.safeParse(data);
@@ -15,31 +15,19 @@ const addProduct = (async(req : Request, res : Response)=>{
             })
             return;
         }
-
-        const item = await prisma.product.findFirst({
-            where : {
-                name : data.name,
-                category : data.category,
-                delete : false
-            }
-        });
-        if(item){
-            res.status(409).json({
-                msg: "Product already exist"
-            })
-            return;
-        }
-
-        await prisma.product.create({
-            data : {
+        await prisma.product.update({
+            data: {
                 name : data.name,
                 category : data.category,
                 price : data.price,
                 quantity : data.quantity
+            },
+            where : {
+                id: data.id
             }
-        })
+        });
         res.status(201).json({
-            msg : "Product added"
+            msg : "Product updated"
         })
     }
     catch(e){
@@ -50,4 +38,4 @@ const addProduct = (async(req : Request, res : Response)=>{
     }
 })
 
-export default addProduct;
+export default updateProduct;
