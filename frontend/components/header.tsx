@@ -10,17 +10,17 @@ type routetype ={
 
 const route : routetype[] = [
     {
-        "name" : "Home",
+        "name" : "Dashboard",
         "route" : "/"
     },{
-        "name" : "Services",
-        "route" : '/services'
+        "name" : "Product",
+        "route" : '/product'
     },{
-        "name" : "AboutUs",
-        "route" : "/about"
+        "name" : "Supplier",
+        "route" : "/supplier"
     },{
-        "name" : "ContactUs",
-        "route" : "/contact"
+        "name" : "Transcation",
+        "route" : "/transcation"
     }
 ]
 
