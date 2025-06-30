@@ -30,18 +30,18 @@ type faqTypes = {
 }
 
 const FAQlist: faqTypes[] = [{
-    question: "What does Vulcan Technologies do?",
-    answer: "Vulcan leverages AI and legal expertise to offer intelligent tools for automatic regulatory drafting and compliance reporting, helping both government agencies and private firms navigate complex legal landscapes."
+    question: "What does the Inventory Management System do?",
+    answer: "It helps businesses efficiently track, manage, and organize their stock levels, orders, sales, and deliveries in real-time."
 }, {
-    question: "What is Intelligent Legal Cartography?",
-    answer: "It's Vulcan's proprietary system that uses AI-generated vector embeddings to map relationships between laws, regulations, and case law, enabling automatic analysis, drafting, and compliance."
+    question: "Can I track inventory across multiple locations?",
+    answer: "Yes, the system supports multi-location inventory tracking, allowing you to monitor stock levels at different warehouses or stores from a single dashboard."
 }, {
-    question: "Who uses Vulcan's services?",
-    answer: "Vulcan serves two main audiences: government agencies needing automatic regulatory drafting tools, and businesses requiring compliance analysis and automated public comment submissions."
+    question: "Does the system support low stock alerts?",
+    answer: "Absolutely. You can set minimum stock thresholds, and the system will automatically alert you when items run low."
 }, {
-    question: "How does Vulcan help reduce regulatory burdens?",
-    answer: "By automatically identifying outdated or redundant rules and suggesting compliant revisions, Vulcan helps agencies deregulate without legal risk, and assists businesses in requesting regulatory carve-outs."
+    question: "Can I manage a list of suppliers with associated products?",
+    answer: "Yes, the system lets you maintain a comprehensive list of suppliers along with the products they provide, making reordering and supplier tracking seamless."
 }, {
-    question: "Can Vulcan generate bills for specific states?",
-    answer: "Yes, Vulcan’s bill generation software can create or reformat legislation tailored to specific state or federal codes, ensuring accuracy in format, references, and legal structure."
+    question: "Is there a record of all past transactions?",
+    answer: "Yes, the system keeps a detailed history of all stock movements, purchases, sales, and adjustments, providing complete traceability and audit-ready logs."
 }];
