@@ -16,7 +16,6 @@ model Product {
   price      Int
   quantity   Int         @default(0)
   delete     Boolean     @default(false)
-  suppliers  Supplier[]
   histories  TransactionHistory[]
   createdAt DateTime @default(now())
 }
@@ -28,8 +27,7 @@ model Supplier {
   phone    String
   email    String
   delete   Boolean  @default(false)
-  products Product  @relation(fields: [productId], references: [id])
-  productId String
+  product String
   createdAt DateTime @default(now())
 }
 
