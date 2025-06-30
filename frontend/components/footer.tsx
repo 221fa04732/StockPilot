@@ -16,7 +16,10 @@ export default function Footer(){
         <div className="w-full flex flex-col justify-center items-center text-lg font-semibold text-white absolute top-0 -z-10" style={{ backgroundImage: "radial-gradient(circle farthest-corner at -24.7% -47.3%, rgba(6,130,165,1) 0%, rgba(34,48,86,1) 66.8%, rgba(15,23,42,1) 100.2%)"}}>
             <div className="w-10/12 flex flex-col justify-center items-center pt-20 pb-6">
                 <div className="w-full grid grid-cols-1 md:grid-cols-3 place-content-between">
-                    <div className="text-xl font-bold flex justify-center md:justify-start">Vulcan Technologies</div>
+                    <div className="flex flex-row gap-2">
+                        <Image src="/icon.png" alt="logo" height={100} width={100} className='max-h-8 max-w-8'/>
+                        <div className="text-xl font-bold flex justify-center md:justify-start">StockPilot</div>
+                    </div>
                     <div className="flex flex-col justify-center items-center md:items-start text-lg">
                         <span className="hover:text-neutral-900 cursor-pointer">Links</span>
                         <span className="hover:text-neutral-900 cursor-pointer">App</span>
@@ -39,7 +42,7 @@ export default function Footer(){
                         <a href="https://www.linkedin.com/" target="_blank"><Image src="/linkedin.png" alt="linkedin" height={50} width={50} className="max-h-6 max-w-6 hover:scale-125" /></a>
                     </div>
                 </div>
-                <div className="w-full flex justify-center items-center text-xs">© 2025 Vulcan Technologies - All right reserved</div>
+                <div className="w-full flex justify-center items-center text-xs">© 2025 StockPilot - All right reserved</div>
             </div>
         </div>
     </div>)
