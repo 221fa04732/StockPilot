@@ -6,8 +6,6 @@ const prisma= new PrismaClient()
 const getProduct = (async(req : Request, res : Response)=>{
     const page : number = Number(req.query.page)
     const searchWord : string = req.query.search as string
-    console.log(page)
-    console.log(searchWord)
     try{
         const limit= 2;
         const skip= limit*page

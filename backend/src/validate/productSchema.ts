@@ -7,3 +7,8 @@ export const productSchema = z.object({
     price : z.number(),
     quantity : z.number()
 })
+
+export const tradeSchema = z.object({
+    id : z.string(),
+    quantity : z.number()
+})

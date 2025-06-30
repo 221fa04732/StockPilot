@@ -5,7 +5,7 @@ import { tradeType } from "../types/tradeType";
 
 const prisma= new PrismaClient()
 
-const buyProduct = (async(req : Request, res : Response)=>{
+const sellProduct = (async(req : Request, res : Response)=>{
     const data : tradeType = req.body;
     try{
         const validate = tradeSchema.safeParse(data);
@@ -22,11 +22,17 @@ const buyProduct = (async(req : Request, res : Response)=>{
                 delete : false
             }
         });
+        if(item && item.quantity<data.quantity){
+            res.status(409).json({
+                msg: "Invalid trade"
+            })
+            return;
+        }
 
         item && await prisma.$transaction([
             prisma.product.update({
                 data:{
-                    quantity: item.quantity+data.quantity
+                    quantity: item.quantity-data.quantity
                 },
                 where: {
                     id: item.id
@@ -36,14 +42,14 @@ const buyProduct = (async(req : Request, res : Response)=>{
                 data:{
                     quantity: data.quantity,
                     price: item.price,
-                    transactionType: 'buy',
+                    transactionType: 'sell',
                     productId: data.id,
                 }
             })
         ])
 
         res.status(201).json({
-            msg : "Congratulations! Purchase successful"
+            msg : "Congratulations! Sold successful"
         })
     }
     catch(e){
@@ -54,4 +60,4 @@ const buyProduct = (async(req : Request, res : Response)=>{
     }
 })
 
-export default buyProduct;
+export default sellProduct;
