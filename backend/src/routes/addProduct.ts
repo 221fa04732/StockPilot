@@ -19,7 +19,8 @@ const addProduct = (async(req : Request, res : Response)=>{
         const item = await prisma.product.findFirst({
             where : {
                 name : data.name,
-                category : data.category
+                category : data.category,
+                delete : false
             }
         });
         if(item){
