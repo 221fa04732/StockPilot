@@ -1,7 +1,11 @@
 export default function TransactionLoader() {
-    window.scrollTo({
-        top: 0
-    })
+    if (typeof window !== 'undefined') {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
     return (
         <div className="w-10/12 md:w-8/12">
             {[...Array(5)].map((_, i) => (
