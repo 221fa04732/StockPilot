@@ -1,8 +1,67 @@
-import { ServiceCard } from "@/components/services";
+"use client"
 
-export default function Services(){
-    return (<div className="w-full flex justify-center items-center bg-slate-950 text-white pt-32 pb-40">
-        <ServiceCard />
+import Error from '@/components/error'
+import { BACKEND_URL } from '@/config'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { toast } from 'sonner'
+import { useDebounce } from '@/hooks/debounce'
+import { Input } from '@/components/ui/input'
+import { ProductDialogDemo } from '@/components/addProduct'
+
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  quantity: number;
+  delete: boolean;
+  createdAt: string;
+}
+interface ProductResponse {
+  product: Product[];
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
+export default function Product() {
+  const [productData, setProductData] = useState<ProductResponse>()
+  const [loading, setLoading] = useState<number>(0)
+  const [page, setPage] = useState<number>(0)
+  const [word, setWord]= useState<string>("")
+  const searchWord= useDebounce(word)
+  useEffect(() => {
+    setLoading(0)
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
+        if (response) {
+          setProductData(response.data)
+        }
+        setLoading(2);
+      } catch (e) {
+        setLoading(1)
+        toast.error("Failed to load product")
+      }
+    }
+    fetchProduct()
+    const interval = setInterval(fetchProduct, 60000)
+    return () => clearInterval(interval)
+  }, [searchWord, page])
+
+  if (loading === 1) {
+    return <Error />
+  }
+
+  return (<div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-32 pb-40'>
+    <div className='fixed top-20 z-40 w-10/12 md:w-8/12 grid grid-cols-1 md:grid-cols-3 place-items-center md:place-items-end gap-4 p-2 backdrop-blur-sm bg-white/10 border border-gray-600/30 rounded-lg'>
+      <Input 
+        value={word} 
+        onChange={(e) => setWord(e.target.value)} 
+        placeholder='Search product' 
+        className='bg-white/20 text-white placeholder:text-gray-300 md:col-span-2 focus:bg-white/30 focus:ring-2 focus:ring-blue-400/50 border-transparent'
+      />
+      <ProductDialogDemo />
     </div>
-  );
+  </div>)
 }

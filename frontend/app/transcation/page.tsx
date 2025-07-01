@@ -28,8 +28,8 @@ export default function Transaction() {
     const [loading, setLoading] = useState<number>(0)
     const [page, setPage] = useState<number>(0)
     useEffect(() => {
+        setLoading(0)
         const fetchTransaction = async () => {
-            setLoading(0)
             try {
                 const response = await axios.get(`${BACKEND_URL}/api/v1/transcation?page=${page}`)
                 if (response) {
@@ -42,8 +42,8 @@ export default function Transaction() {
             }
         }
         fetchTransaction()
-        const timeout = setTimeout(fetchTransaction, 60000)
-        return () => clearTimeout(timeout)
+        const interval = setInterval(fetchTransaction, 60000)
+        return () => clearInterval(interval)
     }, [page])
 
     if (loading === 0) {

@@ -28,7 +28,7 @@ const route : routetype[] = [
 ]
 
 export default function Header(){
-    return(<header className="h-16 w-full flex justify-center fixed top-6 z-50">
+    return(<header className="h-16 w-full flex justify-center fixed top-2 z-50">
         <div className="flex justify-between items-center w-11/12 rounded-lg px-6 border border-slate-900 backdrop-blur-2xl">
             <div className='flex gap-2'>
                 <Image src="/icon.png" alt="logo" height={100} width={100} className='max-h-8 max-w-8'/>
