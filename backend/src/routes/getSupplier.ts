@@ -7,7 +7,7 @@ const getSupplier = (async(req : Request, res : Response)=>{
     const page : number = Number(req.query.page)
     const searchWord : string = req.query.search as string
     try{
-        const limit= 20;
+        const limit= 10;
         const skip= limit*page
         const supplier = await prisma.supplier.findMany({
             where : {
