@@ -2,35 +2,57 @@ import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 
 export function ServiceCard() {
-  const data = [{
-        title: "/bill.png",
-        content: (
-        <div className="flex flex-col items-start justify-center gap-4">
-          <div className="text-4xl lg:xl font-bold text-neutral-600">Automatic Deregulation</div>
-          <div className="text-white md:text-lg text-sm">Vulcan maps all state and federal laws, regulations, and guidance documents, enabling automatic reduction of regulatory burdens. We decipher relationships between regulations and laws, ensuring compliance with legal requirements while meeting agency demands. Trust Vulcan Consulting to rewrite regulations effectively, prioritizing necessary provisions and eliminating outdated complexities.</div>
-        </div>
-        ),
-        navigateURL : "https://www.vulcan-tech.com/deregulation"
-    },{
-        title: "/deregulation.png",
-        content: (
-        <div className="flex flex-col items-start justify-center gap-4">
-          <div className="text-4xl lg:xl font-bold text-neutral-600">Automatic Bill Writing</div>
-          <div className="text-white md:text-lg text-sm">Vulcan offers an efficient and legally compliant bill generation software that aligns with state and federal codes. Our AI enables users to effortlessly generate bill drafts without worrying about formatting, definitions, or identifying the right sections to amend. Whether users need to draft a novel bill or reformat an existing model within a specific state code, Vulcan provides a seamless solution.</div>
-        </div>
-        ),
-        navigateURL : "https://www.vulcan-tech.com/billdrafting"
-    },{
-      title: "/compliance.png",
+  const data = [
+    {
+      title: "/dashboard.png",
       content: (
         <div className="flex flex-col items-start justify-center gap-4">
-          <div className="text-4xl lg:xl font-bold text-neutral-600">Business Compliance</div>
-          <div className="text-white md:text-lg text-sm">Vulcan maps all state and federal laws, regulations, and guidance documents, enabling automatic reduction of regulatory burdens. We decipher relationships between regulations and laws, ensuring compliance with legal requirements while meeting agency demands. Trust Vulcan Consulting to rewrite regulations effectively, prioritizing necessary provisions and eliminating outdated complexities.</div>
+          <div className="text-4xl lg:xl font-bold text-neutral-600">Dashboard Overview</div>
+          <div className="text-white md:text-lg text-sm">
+            The dashboard provides a comprehensive overview where users can see key reports like low stock alerts, last transactions, supplier count, product count, total inventory value, total buy and sell, and net profit. It serves as the central hub for operational insights.
+          </div>
         </div>
       ),
-      navigateURL : "https://www.vulcan-tech.com/businesschecker"
+      navigateURL: "/",
+    },
+    {
+      title: "/product.png",
+      content: (
+        <div className="flex flex-col items-start justify-center gap-4">
+          <div className="text-4xl lg:xl font-bold text-neutral-600">Product Management</div>
+          <div className="text-white md:text-lg text-sm">
+            All products are listed with full access to add new ones, edit existing entries, and delete outdated or incorrect products. This module ensures the inventory stays updated and manageable.
+          </div>
+        </div>
+      ),
+      navigateURL: "/product",
+    },
+    {
+      title: "/supplier.png",
+      content: (
+        <div className="flex flex-col items-start justify-center gap-4">
+          <div className="text-4xl lg:xl font-bold text-neutral-600">Supplier Directory</div>
+          <div className="text-white md:text-lg text-sm">
+            The supplier module displays all listed suppliers along with their associated products. Users can easily add new suppliers, update existing details, or remove obsolete ones.
+          </div>
+        </div>
+      ),
+      navigateURL: "/supplier",
+    },
+    {
+      title: "/transcation.png",
+      content: (
+        <div className="flex flex-col items-start justify-center gap-4">
+          <div className="text-4xl lg:xl font-bold text-neutral-600">Transaction Records</div>
+          <div className="text-white md:text-lg text-sm">
+            View all recent transactions including purchases and sales. This section keeps track of every transaction made, ensuring financial transparency and traceability.
+          </div>
+        </div>
+      ),
+      navigateURL: "/transcation",
     },
   ];
+
   return (
     <div className="relative w-full overflow-clip">
       <Timeline data={data} />

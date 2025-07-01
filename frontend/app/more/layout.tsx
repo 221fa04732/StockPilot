@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export const metadata = {
-  title: 'Product | StockPilot',
+  title: 'More | StockPilot',
   description: 'Sample layout using App Router',
 };
 

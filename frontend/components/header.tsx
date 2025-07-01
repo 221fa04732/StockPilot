@@ -19,8 +19,11 @@ const route : routetype[] = [
         "name" : "Supplier",
         "route" : "/supplier"
     },{
-        "name" : "Transcation",
+        "name" : "Transaction",
         "route" : "/transcation"
+    },{
+        "name": "More",
+        "route": "/more"
     }
 ]
 

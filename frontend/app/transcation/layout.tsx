@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export const metadata = {
-  title: 'Contact Us | Vulcan Consulting',
+  title: 'Transcation | StockPilot',
   description: 'Sample layout using App Router',
 };
 

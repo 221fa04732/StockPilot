@@ -2,7 +2,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { Testimonials } from "@/components/ui/animatedtestimonials";
 
 
-export default function AboutUs(){
+export default function OurTeam(){
     return(<div className="bg-slate-950 text-white w-full flex flex-col justify-center items-center pt-32 pb-40">
         <div className="w-10/12 flex flex-col justify-center items-center gap-6">
             <div className='font-extrabold text-3xl lg:text-5xl'>Meet our team</div>
