@@ -38,6 +38,7 @@ const buyProduct = (async(req : Request, res : Response)=>{
                     price: item.price,
                     transactionType: 'buy',
                     productId: data.id,
+                    productName: item.name
                 }
             })
         ])

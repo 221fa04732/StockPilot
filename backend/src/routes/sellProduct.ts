@@ -44,6 +44,7 @@ const sellProduct = (async(req : Request, res : Response)=>{
                     price: item.price,
                     transactionType: 'sell',
                     productId: data.id,
+                    productName: item.name
                 }
             })
         ])

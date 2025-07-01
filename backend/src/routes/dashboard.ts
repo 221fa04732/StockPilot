@@ -22,6 +22,17 @@ const dashboard = (async(req : Request, res : Response)=>{
                 createdAt : 'desc'
             }
         })
+        const transactionTrack= await prisma.transactionHistory.findMany({})
+        let totalSell=0;
+        let totalBuy=0;
+        transactionTrack.forEach((item)=>{
+            if(item.transactionType==='buy'){
+                totalBuy+=item.price
+            }
+            else{
+                totalSell+=item.price
+            }
+        })
         let activeProduct=0;
         let totalInventoryValue=0;
         let lowStockItems : productType[] = []
@@ -34,13 +45,13 @@ const dashboard = (async(req : Request, res : Response)=>{
         })
 
         res.status(201).json({
-            data : {
-                productCnt : activeProduct,
-                supplierCnt : supplier,
-                totalInventoryValue : totalInventoryValue,
-                lowStockItems : lowStockItems,
-                transaction : transaction
-            }
+            productCnt : activeProduct,
+            supplierCnt : supplier,
+            totalInventoryValue : totalInventoryValue,
+            lowStockItems : lowStockItems,
+            transaction : transaction,
+            totalBuy : totalBuy,
+            totalSell : totalSell
         })
     }
     catch(e){
