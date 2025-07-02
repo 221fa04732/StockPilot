@@ -17,7 +17,7 @@ export default function ProductCard({product} : {product: ProductType}){
   const formattedDate = new Date(product.createdAt).toLocaleDateString();
   const isOutOfStock = product.quantity <= 0;
   return (
-    <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-800 transition-all hover:border-gray-600 hover:scale-101">
+    <div key={product.id} className="bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-800 transition-all hover:border-gray-600 hover:scale-101">
       <div className="p-5">
         <div className="flex justify-between items-start mb-3">
           <div>

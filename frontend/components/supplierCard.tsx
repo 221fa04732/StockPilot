@@ -7,7 +7,7 @@ import { DeleteSupplier } from './deleteSupplier';
 
 export default function SupplierCard({ supplier }: { supplier: SupplierType }) {
   return (
-    <div className="w-full p-0 rounded-lg overflow-hidden bg-gray-900/50 border border-gray-800 hover:bg-gray-800/30 transition-colors duration-200">
+    <div key={supplier.id} className="w-full p-0 rounded-lg overflow-hidden bg-gray-900/50 border border-gray-800 hover:bg-gray-800/30 transition-colors duration-200">
       <div className="p-4">
         <div className="flex justify-between items-start">
           <div className="flex items-start gap-3">

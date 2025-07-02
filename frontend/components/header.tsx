@@ -22,6 +22,9 @@ const route : routetype[] = [
         "name" : "Transaction",
         "route" : "/transcation"
     },{
+        "name" : "Assistant",
+        "route" : "/ai"
+    },{
         "name": "More",
         "route": "/more"
     }

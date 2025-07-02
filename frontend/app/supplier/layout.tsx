@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import Footer from '@/components/footer';
 
 export const metadata = {
   title: 'Supplier | StockPilot',
@@ -10,11 +11,8 @@ export default function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body >
-        {children}
-      </body>
-    </html>
-  );
+  return (<div>
+    {children}
+    <Footer />
+  </div>);
 }
