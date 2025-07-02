@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { ProductDialogDemo } from '@/components/addProduct'
 import ProductCard from '@/components/productCard'
 import PaginationBtn from '@/components/paginationBtn'
-import { ProductLoader } from '@/productLoader'
+import { ProductLoader } from '@/components/productLoader'
 
 interface Product {
   id: string;
