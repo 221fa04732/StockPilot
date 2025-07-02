@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { ProductDialogDemo } from '@/components/addProduct'
 import ProductCard from '@/components/productCard'
 import PaginationBtn from '@/components/paginationBtn'
+import { ProductLoader } from '@/productLoader'
 
 interface Product {
   id: string;
@@ -65,14 +66,17 @@ export default function Product() {
       />
       <ProductDialogDemo />
     </div>
-    <div className='w-10/12 grid gap-4 grid-col-1 md:grid-cols-2'>
-      {productData?.product.map((item)=>(
-        <ProductCard product={item} />
-      ))}
-    </div>
-    <div className="flex gap-4 mt-6">
-        <PaginationBtn onClick={()=> setPage(page-1)} name={"Previous"} enable={productData?.hasPreviousPage || false}/>
-        <PaginationBtn onClick={()=> setPage(page+1)} name={"Next"} enable={productData?.hasNextPage || false} />
-    </div>
+    {loading===1 ? <ProductLoader /> : 
+    <div className='w-full flex flex-col justify-center items-center'>
+      <div className='w-10/12 grid gap-4 grid-col-1 md:grid-cols-2'>
+        {productData?.product.map((item)=>(
+          <ProductCard product={item} />
+        ))}
+      </div>
+      <div className="flex gap-4 mt-6">
+          <PaginationBtn onClick={()=> setPage(page-1)} name={"Previous"} enable={productData?.hasPreviousPage || false}/>
+          <PaginationBtn onClick={()=> setPage(page+1)} name={"Next"} enable={productData?.hasNextPage || false} />
+      </div>
+    </div>}
   </div>)
 }
