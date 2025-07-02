@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogClose,
+  DialogHeader,
+  DialogTitle,
   DialogContent,
   DialogFooter,
   DialogTrigger,
@@ -45,9 +47,12 @@ export function SupplierDialogDemo() {
     return (<Dialog>
       <div>
         <DialogTrigger asChild>
-          <Button className="bg-gray-900 hover:bg-gray-800 hover:text-white shadow-gray-950">add supplier</Button>
+          <Button className="bg-gray-900 hover:bg-gray-800 hover:text-white shadow-gray-950 cursor-pointer">add supplier</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-gray-950 text-white">
+          <DialogHeader>
+            <DialogTitle className="flex justify-center">Buy Product</DialogTitle>
+          </DialogHeader>
           <div className="grid gap-4 mt-2">
             <div className="grid gap-3">
               <Label>Name</Label>
@@ -68,9 +73,9 @@ export function SupplierDialogDemo() {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button className="bg-red-500 hover:bg-red-400 hover:text-white shadow-red-950">cancel</Button>
+              <Button className="bg-red-500 hover:bg-red-400 hover:text-white shadow-red-950 cursor-pointer">cancel</Button>
             </DialogClose>
-            <Button className="bg-gray-900 hover:bg-gray-800 hover:text-white shadow-gray-950" onClick={()=>{
+            <Button className="bg-gray-900 hover:bg-gray-800 hover:text-white shadow-gray-950 cursor-pointer" onClick={()=>{
                 addsupplier()
             }}>{loader===0 ? "loading..." : "add supplier"}</Button>
           </DialogFooter>

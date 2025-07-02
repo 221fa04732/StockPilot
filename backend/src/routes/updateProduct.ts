@@ -19,8 +19,7 @@ const updateProduct = (async(req : Request, res : Response)=>{
             data: {
                 name : data.name,
                 category : data.category,
-                price : data.price,
-                quantity : data.quantity
+                price : data.price
             },
             where : {
                 id: data.id

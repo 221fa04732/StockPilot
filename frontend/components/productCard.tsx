@@ -1,6 +1,10 @@
 import React from 'react';
+import { DeleteProduct } from './deleteProduct';
+import { EditProduct } from './editProduct';
+import { SellProduct } from './sellProduct';
+import { BuyProduct } from './buyProduct';
 
-interface ProductType {
+export interface ProductType {
   id: string;
   name: string;
   category: string;
@@ -13,7 +17,7 @@ export default function ProductCard({product} : {product: ProductType}){
   const formattedDate = new Date(product.createdAt).toLocaleDateString();
   const isOutOfStock = product.quantity <= 0;
   return (
-    <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-800 transition-all hover:border-gray-600 hover:scale-102">
+    <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-800 transition-all hover:border-gray-600 hover:scale-101">
       <div className="p-5">
         <div className="flex justify-between items-start mb-3">
           <div>
@@ -36,20 +40,11 @@ export default function ProductCard({product} : {product: ProductType}){
             <span>{formattedDate}</span>
           </div>
         </div>
-        <div className="flex space-x-2 pt-3 border-t border-gray-800">
-          <button 
-            disabled={isOutOfStock}
-            className={`flex-1 py-2 px-3 bg-blue-900/60 hover:bg-blue-800/60 text-blue-500 text-xs font-medium rounded transition-colors cursor-pointer`}>Sell
-          </button>
-          <button 
-            className="flex-1 py-2 px-3 bg-green-900/60 hover:bg-green-800/60 text-green-500 text-xs font-medium rounded transition-colors cursor-pointer">Buy
-          </button>
-          <button 
-            className="flex-1 py-2 px-3 bg-cyan-900/60 hover:bg-cyan-800/60 text-cyan-400 text-xs font-medium rounded transition-colors cursor-pointer">Edit
-          </button>
-          <button 
-            className="flex-1 py-2 px-3 bg-red-900/60 hover:bg-red-800/60 text-red-400 text-xs font-medium rounded transition-colors cursor-pointer">Delete
-          </button>
+        <div className="grid grid-cols-4 gap-2 pt-3 border-t border-gray-800">
+          <BuyProduct id={product.id} />
+          <SellProduct id={product.id} initialQuantity={product.quantity} />
+          <EditProduct product={product}/>
+          <DeleteProduct id={product.id}/>
         </div>
       </div>
     </div>
