@@ -66,7 +66,7 @@ export default function Product() {
       />
       <ProductDialogDemo />
     </div>
-    {loading===1 ? <ProductLoader /> : 
+    {loading===0 ? <ProductLoader /> : 
     <div className='w-full flex flex-col justify-center items-center'>
       <div className='w-10/12 grid gap-4 grid-col-1 md:grid-cols-2'>
         {productData?.product.map((item)=>(

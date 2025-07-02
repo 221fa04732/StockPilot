@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "../../src/generated/prisma";
 import { productType } from "../types/productType";
-import { productSchema } from "../validate/productSchema";
+import { UpdateproductSchema } from "../validate/productSchema";
 
 const prisma= new PrismaClient()
 
 const updateProduct = (async(req : Request, res : Response)=>{
     const data : productType = req.body;
     try{
-        const validate = productSchema.safeParse(data);
+        const validate = UpdateproductSchema.safeParse(data);
         if(!validate.success){
             res.status(400).json({
                 msg: "Invalid input"
