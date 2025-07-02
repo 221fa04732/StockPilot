@@ -13,13 +13,11 @@ export default function TransactionCard({ transaction }: { transaction: Transact
                 ? 'bg-green-900/10 border border-green-800/50 hover:bg-green-900/20'
                 : 'bg-red-900/10 border border-red-800/50 hover:bg-red-900/20'
             } transition-colors duration-200 shadow-sm`}>
-            {/* Main Card Content */}
             <div className="p-4">
                 <div className="flex items-start gap-3">
                     <div className={`p-2 rounded-full ${isBuy ? 'bg-green-900/30' : 'bg-red-900/30'}`}>
                         <Icon className={`w-5 h-5 ${isBuy ? 'text-green-400' : 'text-red-400'}`} />
                     </div>
-
                     <div className="flex-1">
                         <div className="flex justify-between items-start">
                             <div>
@@ -36,7 +34,6 @@ export default function TransactionCard({ transaction }: { transaction: Transact
                                 {isBuy ? 'Purchase' : 'Sale'}
                             </span>
                         </div>
-
                         <div className="flex justify-between items-center mt-3">
                             <div>
                                 <p className="text-sm text-gray-300">Quantity</p>
@@ -68,8 +65,7 @@ export default function TransactionCard({ transaction }: { transaction: Transact
                         toast.success('Transaction ID copied!');
                     }}
                     className="ml-auto opacity-70 hover:opacity-100 transition-opacity"
-                    aria-label="Copy transaction ID"
-                >
+                    aria-label="Copy transaction ID">
                     <Copy className="w-3.5 h-3.5" />
                 </button>
             </div>

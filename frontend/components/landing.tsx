@@ -18,7 +18,7 @@ export default function Landing(){
                     <span className="text-white bg-[#FFFFFF15] text-xs md:text-base px-4 py-2 rounded-full text-center mb-10 md:mb-6">Manage supplier and inventory & track product and transaction</span>
                     <div className="font-semibold lg:font-extrabold text-2xl lg:text-5xl text-white text-center">StockPilot</div>
                     <Link href={"/product"}>
-                        <Button className='bg-blue-700 hover:bg-blue-600 mt-6'><span className='text-lg'>Manage your product</span><CircleChevronRight />
+                        <Button className='bg-blue-700 hover:bg-blue-600 mt-6 cursor-pointer'><span className='text-lg'>Manage your product</span><CircleChevronRight />
                         </Button>
                     </Link>
                 </div>

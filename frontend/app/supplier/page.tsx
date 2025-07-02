@@ -53,12 +53,12 @@ export default function Product() {
     return <Error />
   }
 
-  return (<div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-32 pb-40'>
-    <div className='fixed top-20 z-40 w-10/12 md:w-8/12 grid grid-cols-1 md:grid-cols-3 place-items-center md:place-items-end gap-4 p-2 backdrop-blur-sm bg-white/10 border border-gray-600/30 rounded-lg'>
+  return (<div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-40 md:pt-36 pb-40'>
+    <div className='fixed top-20 z-40 w-10/12 grid grid-cols-1 md:grid-cols-3 place-items-center md:place-items-end gap-2 p-2 backdrop-blur-sm bg-white/10 border border-gray-600/30 rounded-lg'>
       <Input 
         value={word} 
         onChange={(e) => setWord(e.target.value)} 
-        placeholder='Search product' 
+        placeholder='Search supplier' 
         className='bg-white/20 text-white placeholder:text-gray-300 md:col-span-2 focus:bg-white/30 focus:ring-2 focus:ring-blue-400/50 border-transparent'
       />
       <SupplierDialogDemo />

@@ -9,7 +9,7 @@ export default function Footer(){
             <div className="md:col-span-2 col-span-1 flex items-center justify-center">
                 <div className="flex items-center gap-2">
                     <Input type="email" placeholder="example@gmail.com"/>
-                    <Button type="submit" variant="outline">Subscribe</Button>
+                    <Button type="submit" variant="outline" className="cursor-pointer">Subscribe</Button>
                 </div>
             </div>
         </div>

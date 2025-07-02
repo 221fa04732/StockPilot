@@ -45,7 +45,7 @@ export function SupplierDialogDemo() {
     return (<Dialog>
       <div>
         <DialogTrigger asChild>
-          <Button variant="outline" className="bg-gray-900 hover:bg-gray-800 hover:text-white">add supplier</Button>
+          <Button className="bg-gray-900 hover:bg-gray-800 hover:text-white shadow-gray-950">add supplier</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-gray-950 text-white">
           <div className="grid gap-4 mt-2">
@@ -68,9 +68,9 @@ export function SupplierDialogDemo() {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" className="bg-red-500 hover:bg-red-400 hover:text-white">cancel</Button>
+              <Button className="bg-red-500 hover:bg-red-400 hover:text-white shadow-red-950">cancel</Button>
             </DialogClose>
-            <Button variant="outline" className="bg-gray-900 hover:bg-gray-800 hover:text-white" onClick={()=>{
+            <Button className="bg-gray-900 hover:bg-gray-800 hover:text-white shadow-gray-950" onClick={()=>{
                 addsupplier()
             }}>{loader===0 ? "loading..." : "add supplier"}</Button>
           </DialogFooter>

@@ -2,7 +2,7 @@ import { DashboardDataType } from "./dashboard"
 import { AlertTriangle } from 'lucide-react'
 
 export default function LowStockItem({ item }: { item: DashboardDataType['lowStockItems'][0] }){
-    return(<div className="flex justify-between items-center py-3 border-b border-slate-800 last:border-0">
+    return(<div className="flex justify-between items-center py-3 border-b border-slate-800 last:border-0 hover:bg-slate-800 rounded-md p-2 cursor-pointer">
         <div className="flex items-center gap-3">
             <div className={`p-2 rounded-lg ${item.quantity === 0 ? 'bg-red-900/30 text-red-400' : 'bg-yellow-900/30 text-yellow-400'}`}>
                 <AlertTriangle size={16} />

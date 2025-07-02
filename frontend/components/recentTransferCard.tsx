@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 
 export default function TransactionItem({ transaction }: { transaction: DashboardDataType['transaction'][0] }) {
     const isBuy = transaction.transactionType === 'buy'
-    return (<div className="flex justify-between items-center py-3 border-b border-slate-800 last:border-0">
+    return (<div className="flex justify-between items-center py-3 border-b border-slate-800 last:border-0 hover:bg-slate-800 rounded-md p-2 cursor-pointer">
         <div className="flex items-center gap-3">
             <div className={`p-2 rounded-lg ${isBuy ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'}`}>
                 {isBuy ? <TrendingUp size={16} /> : <TrendingDown size={16} />}

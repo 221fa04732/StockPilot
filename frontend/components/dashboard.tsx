@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { BACKEND_URL } from '@/config'
-import { Package, Users, Box, TrendingUp, TrendingDown, AlertTriangle, ShoppingCart } from 'lucide-react'
+import { Package, Users, Box, TrendingUp, TrendingDown, AlertTriangle, ShoppingCart, Wallet } from 'lucide-react'
 import StatCard from './statCard'
 import TransactionItem from './recentTransferCard'
 import LowStockItem from './lowStockCard'
-import { toast } from 'sonner'
 import Error from './error'
 
 export interface DashboardDataType {
@@ -65,7 +64,7 @@ export default async function Dashboard() {
                         value={`$${data.totalSell.toLocaleString()}`}
                         delta={"Money"}/>
                     <StatCard
-                        icon={netProfit >= 0 ? <TrendingUp size={20} /> : <TrendingDown size={20} />}
+                        icon={<Wallet  size={20} />}
                         title="Net Profit"
                         value={`$${netProfit.toLocaleString()}`}
                         delta={"Money"}/>
@@ -75,7 +74,7 @@ export default async function Dashboard() {
                         <div className="flex items-center gap-2 mb-6">
                             <AlertTriangle className="text-yellow-400" size={20} />
                             <h2 className="text-xl font-semibold">Low Stock Alerts</h2>
-                            <span className="ml-auto bg-slate-800 text-sm px-3 py-1 rounded-full">
+                            <span className="ml-auto text-sm px-3 py-1 rounded-full bg-red-900/30 text-red-400">
                                 {data.lowStockItems.length} items
                             </span>
                         </div>
@@ -88,8 +87,8 @@ export default async function Dashboard() {
                     <div className="bg-slate-900 rounded-xl p-6">
                         <div className="flex items-center gap-2 mb-6">
                             <ShoppingCart size={20} />
-                            <h2 className="text-xl font-semibold">Recent Transactions</h2>
-                            <span className="ml-auto bg-slate-800 text-sm px-3 py-1 rounded-full">
+                            <h2 className="text-xl font-semibold ">Recent Transactions</h2>
+                            <span className="ml-auto text-sm px-3 py-1 rounded-full bg-green-900/30 text-green-400">
                                 {data.transaction.length} transactions
                             </span>
                         </div>

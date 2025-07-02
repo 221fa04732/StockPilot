@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
 import TransactionLoader from '@/components/transactionLoader'
 import TransactionCard from '@/components/transactionCard'
+import PaginationBtn from '@/components/paginationBtn'
 
 export interface TransactionInfoType {
     id: string;
@@ -57,7 +58,7 @@ export default function Transaction() {
     }
 
     return (
-        <div className="w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-32 pb-40">
+        <div className="w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-24 pb-40">
             <div className="w-full flex flex-col justify-center items-center">
                 {transactionData?.transaction.map((item) => (
                     <TransactionCard key={item.id} transaction={item} />
@@ -65,16 +66,8 @@ export default function Transaction() {
             </div>
 
             <div className="flex gap-4 mt-6">
-                <button
-                    onClick={() => setPage(page - 1)}
-                    disabled={!transactionData?.hasPreviousPage}
-                    className={`px-4 py-2 rounded-md text-sm ${transactionData?.hasPreviousPage ? 'bg-blue-600 hover:bg-blue-700' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}>Previous
-                </button>
-                <button
-                    onClick={() => setPage(page + 1)}
-                    disabled={!transactionData?.hasNextPage}
-                    className={`px-4 py-2 rounded-md text-sm ${transactionData?.hasNextPage ? 'bg-blue-600 hover:bg-blue-700' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}>Next
-                </button>
+                <PaginationBtn onClick={()=> setPage(page-1)} name={"Previous"} enable={transactionData?.hasPreviousPage || false}/>
+                <PaginationBtn onClick={()=> setPage(page+1)} name={"Next"} enable={transactionData?.hasNextPage || false} />
             </div>
         </div>
     )

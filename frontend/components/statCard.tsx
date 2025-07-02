@@ -5,7 +5,7 @@ export default function StatCard({ icon, title, value, delta }:
     value: string | number, 
     delta: string 
 }){
-    return (<div className="bg-slate-800 rounded-lg p-6 flex flex-col">
+    return (<div className="bg-slate-800 rounded-lg p-6 flex flex-col hover:scale-105">
         <div className="flex justify-between items-start">
             <div className="bg-slate-700 p-3 rounded-lg">{icon}</div>
             {delta && (
