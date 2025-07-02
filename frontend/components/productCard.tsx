@@ -1,6 +1,6 @@
 import React from 'react';
 import { DeleteProduct } from './deleteProduct';
-import { EditProduct } from './editProduct';
+import { EditProduct } from './updateProduct';
 import { SellProduct } from './sellProduct';
 import { BuyProduct } from './buyProduct';
 

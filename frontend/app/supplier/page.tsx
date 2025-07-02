@@ -8,8 +8,11 @@ import { toast } from 'sonner'
 import { useDebounce } from '@/hooks/debounce'
 import { Input } from '@/components/ui/input'
 import { SupplierDialogDemo } from '@/components/addSupplier'
+import PaginationBtn from '@/components/paginationBtn'
+import { SupplierLoader } from '@/components/supplierLoader'
+import SupplierCard from '@/components/supplierCard'
 
-export interface Supplier {
+export interface SupplierType {
   id: string;
   name: string;
   phone: string;
@@ -19,7 +22,7 @@ export interface Supplier {
   createdAt: string;
 }
 export interface SupplierResponse {
-  supplier: Supplier[];
+  supplier: SupplierType[];
   hasNextPage: boolean;
   hasPreviousPage: boolean;
 }
@@ -53,7 +56,7 @@ export default function Product() {
     return <Error />
   }
 
-  return (<div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-40 md:pt-36 pb-40'>
+  return (<div className='w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-48 md:pt-36 pb-40'>
     <div className='fixed top-20 z-40 w-10/12 grid grid-cols-1 md:grid-cols-3 place-items-center md:place-items-end gap-2 p-2 backdrop-blur-sm bg-white/10 border border-gray-600/30 rounded-lg'>
       <Input 
         value={word} 
@@ -63,5 +66,17 @@ export default function Product() {
       />
       <SupplierDialogDemo />
     </div>
+    {loading===0 ? <SupplierLoader /> : 
+    <div className='w-full flex flex-col justify-center items-center'>
+      <div className='w-10/12 flex flex-col gap-4'>
+        {supplierData?.supplier.map((item)=>(
+          <SupplierCard supplier={item} />
+        ))}
+      </div>
+      <div className="flex gap-4 mt-6">
+          <PaginationBtn onClick={()=> setPage(page-1)} name={"Previous"} enable={supplierData?.hasPreviousPage || false}/>
+          <PaginationBtn onClick={()=> setPage(page+1)} name={"Next"} enable={supplierData?.hasNextPage || false} />
+      </div>
+    </div>}
   </div>)
 }

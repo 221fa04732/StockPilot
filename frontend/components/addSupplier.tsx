@@ -51,7 +51,7 @@ export function SupplierDialogDemo() {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-gray-950 text-white">
           <DialogHeader>
-            <DialogTitle className="flex justify-center">Buy Product</DialogTitle>
+            <DialogTitle className="flex justify-center">Add Supplier</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 mt-2">
             <div className="grid gap-3">
