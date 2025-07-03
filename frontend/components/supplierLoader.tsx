@@ -19,6 +19,13 @@ function SupplierSkeleton() {
 
 
 export function SupplierLoader({ count = 6 }: { count?: number }) {
+  if (typeof window !== 'undefined') {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
   return (
     <div className="w-10/12 flex flex-col gap-2">
       {[...Array(count)].map((_, i) => (

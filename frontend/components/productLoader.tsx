@@ -32,6 +32,13 @@ export function ProductCardSkeleton() {
 }
 
 export function ProductLoader({ count = 4 }: { count?: number }) {
+  if (typeof window !== 'undefined') {
+      window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+      });
+  }
   return (
     <div className="w-10/12 grid grid-cols-1 md:grid-cols-2 gap-6">
       {[...Array(count)].map((_, i) => (

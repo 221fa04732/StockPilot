@@ -1,4 +1,11 @@
 export default function DashboardLoader(){
+    if (typeof window !== 'undefined') {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
     return (<div className="w-full flex flex-col justify-center items-center min-h-screen bg-slate-950 text-white pt-12">
             <div className="w-10/12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

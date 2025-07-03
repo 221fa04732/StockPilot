@@ -1,4 +1,11 @@
 export default function TransactionLoader() {
+    if (typeof window !== 'undefined') {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
     return (<div className="w-full min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white pt-32 pb-40">
         <div className="w-10/12 md:w-8/12">
             {[...Array(5)].map((_, i) => (
