@@ -1,6 +1,6 @@
 # 📦 StockPilot – Inventory Management System
 
-**Live URL:** [https://stock-pilot-neon.vercel.app/](https://stock-pilot-neon.vercel.app/)
+**Live URL:** [https://stockpilot-app-ten.vercel.app/](https://stockpilot-app-ten.vercel.app/)
 
 StockPilot is a powerful and scalable inventory management system that simplifies the management of products, suppliers, and transactions. Built with a modern tech stack, it offers a clean interface, robust backend, and seamless integration.
 

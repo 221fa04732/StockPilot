@@ -48,7 +48,7 @@ export default function Product() {
       }
     }
     fetchSupplier()
-    const interval = setInterval(fetchSupplier, 60000)
+    const interval = setInterval(fetchSupplier, 5000)
     return () => clearInterval(interval)
   }, [searchWord, page])
 

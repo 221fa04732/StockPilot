@@ -48,7 +48,7 @@ export default function Product() {
       }
     }
     fetchProduct()
-    const interval = setInterval(fetchProduct, 60000)
+    const interval = setInterval(fetchProduct, 5000)
     return () => clearInterval(interval)
   }, [searchWord, page])
 
@@ -69,7 +69,7 @@ export default function Product() {
     {loading===0 ? <ProductLoader /> : 
     <div className='w-full flex flex-col justify-center items-center'>
       <div className='w-10/12 grid gap-4 grid-col-1 md:grid-cols-2'>
-        {productData?.product.map((item)=>(
+        {productData?.product.toReversed().map((item)=>(
           <ProductCard product={item} />
         ))}
       </div>
