@@ -53,7 +53,7 @@ export default function Product() {
     {isLoading ? <ProductLoader /> : 
     <div className='w-full flex flex-col justify-center items-center'>
       <div className='w-10/12 grid gap-4 grid-col-1 md:grid-cols-2'>
-        {data?.product.toReversed().map((item)=>(
+        {data?.product.map((item)=>(
           <ProductCard product={item} page={page} searchWord={searchWord}/>
         ))}
       </div>
