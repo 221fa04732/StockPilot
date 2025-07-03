@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import axios from 'axios'
-import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
 import { mutate } from "swr"
 
@@ -27,7 +26,7 @@ export function SupplierDialogDemo({page, searchWord} : {page: number, searchWor
     const addsupplier = async()=>{
         setLoader(0)
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/supplier/add`,{
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier/add`,{
                 name : name,
                 email : email,
                 phone : phone,
@@ -35,7 +34,7 @@ export function SupplierDialogDemo({page, searchWord} : {page: number, searchWor
             })
             if (response) {
                 toast.message("supplier added successfully!")
-                mutate(`${BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
+                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

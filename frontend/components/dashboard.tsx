@@ -1,7 +1,6 @@
 "use client"
 
 import axios from 'axios'
-import { BACKEND_URL } from '@/config'
 import { Package, Users, Box, TrendingUp, TrendingDown, AlertTriangle, ShoppingCart, Wallet } from 'lucide-react'
 import StatCard from './statCard'
 import TransactionItem from './recentTransferCard'
@@ -37,7 +36,7 @@ export interface DashboardDataType {
 const fetcher= (url: string)=> axios.get(url).then(res=> res.data)
 
 export default function Dashboard() {
-    const {data, error, isLoading} : {data : DashboardDataType, error: any, isLoading: boolean}= useSWR(`${BACKEND_URL}/api/v1/dashboard`, fetcher)
+    const {data, error, isLoading} : {data : DashboardDataType, error: any, isLoading: boolean}= useSWR(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/dashboard`, fetcher)
 
     if(error){ 
         toast.error("An unexpected error occurred!");

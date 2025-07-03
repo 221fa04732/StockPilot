@@ -1,9 +1,8 @@
 "use client"
 
 import Error from '@/components/error'
-import { BACKEND_URL } from '@/config'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { toast } from 'sonner'
 import TransactionLoader from '@/components/transactionLoader'
 import TransactionCard from '@/components/transactionCard'
@@ -28,7 +27,7 @@ const fetcher= (url: string)=> axios.get(url).then(res=> res.data)
 
 export default function Transaction() {
     const [page, setPage] = useState<number>(0)
-    const {data, error, isLoading} : {data: TransactionType, error: any, isLoading: boolean} = useSWR(`${BACKEND_URL}/api/v1/transcation?page=${page}`, fetcher)
+    const {data, error, isLoading} : {data: TransactionType, error: any, isLoading: boolean} = useSWR(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/transcation?page=${page}`, fetcher)
 
     if(isLoading) return <TransactionLoader />
     if(error){ 

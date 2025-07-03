@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import axios from 'axios'
-import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
 import { mutate } from "swr"
 
@@ -28,13 +27,13 @@ export function SellProduct({id, initialQuantity, page, searchWord} : {id: strin
         }
         setLoader(0)
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/product/sell`,{
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product/sell`,{
                 quantity : quantity,
                 id: id
             })
             if (response) {
                 toast.message("Congratulations! Sold successful")
-                mutate(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
+                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

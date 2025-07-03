@@ -1,7 +1,6 @@
 "use client"
 
 import Error from '@/components/error'
-import { BACKEND_URL } from '@/config'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
@@ -33,7 +32,7 @@ export default function Product() {
   const [page, setPage] = useState<number>(0)
   const [word, setWord]= useState<string>("")
   const searchWord= useDebounce(word)
-  const {data, error, isLoading} : {data : ProductResponse, error : any, isLoading : boolean}= useSWR(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`, fetcher)
+  const {data, error, isLoading} : {data : ProductResponse, error : any, isLoading : boolean}= useSWR(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`, fetcher)
 
   if(error) {
     toast.error("An unexpected error occurred!");

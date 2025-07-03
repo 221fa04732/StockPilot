@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import axios from 'axios'
-import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
 import { ProductType } from "./productCard"
 import { mutate } from "swr"
@@ -27,7 +26,7 @@ export function EditProduct({product, page, searchWord} : {product : ProductType
     const updateproduct = async()=>{
         setLoader(0)
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/product/update`,{
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product/update`,{
                 id : product.id,
                 name : name,
                 category : category,
@@ -35,7 +34,7 @@ export function EditProduct({product, page, searchWord} : {product : ProductType
             })
             if (response) {
                 toast.message("Congratulations! updated successful")
-                mutate(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
+                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

@@ -18,7 +18,7 @@ cd StockPilot
 
 ```bash
 cd frontend
-# Edit config.ts and uncomment the required API URL
+# Create your .env.local file and paste NEXT_PUBLIC_BACKEND_URL to .env.local
 npm install
 npm run dev
 ```

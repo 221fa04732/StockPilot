@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import axios from 'axios'
-import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
 import { SupplierType } from "@/app/supplier/page"
 import { Edit2 } from "lucide-react"
@@ -29,7 +28,7 @@ export function EditSupplier({supplier, page, searchWord} : {supplier : Supplier
     const updatesupplier = async()=>{
         setLoader(0)
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/supplier/update`,{
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier/update`,{
                 id : supplier.id,
                 name : name,
                 email : email,
@@ -38,7 +37,7 @@ export function EditSupplier({supplier, page, searchWord} : {supplier : Supplier
             })
             if (response) {
                 toast.message("Congratulations! updated successful")
-                mutate(`${BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
+                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){
