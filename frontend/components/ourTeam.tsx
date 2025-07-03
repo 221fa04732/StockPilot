@@ -3,7 +3,7 @@ import { Testimonials } from "@/components/ui/animatedtestimonials";
 
 
 export default function OurTeam(){
-    return(<div className="bg-slate-950 text-white w-full flex flex-col justify-center items-center pt-32 pb-40">
+    return(<div className="bg-slate-950 text-white w-full flex flex-col justify-center items-center pt-10 pb-40">
         <div className="w-10/12 flex flex-col justify-center items-center gap-6">
             <div className='font-extrabold text-3xl lg:text-5xl'>Meet our team</div>
             <div className="flex flex-row items-center justify-center mt-14 w-full"><Tooltip items={teamList}/></div>

@@ -48,20 +48,20 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col lg:flex-row justify-start pt-10 lg:pt-20 lg:gap-10"
+            className="flex flex-col lg:flex-row justify-start pt-6 lg:pt-10 lg:gap-10"
           >
             <div className="sticky flex flex-col lg:flex-row z-40 items-center top-40 self-start">
-              <div className="h-10 absolute left-3 lg:left-3 w-10  rounded-full bg-white dark:bg-black flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-blue-500 border border-neutral-300 dark:border-neutral-700 p-2" />
+              <div className="h-8 absolute left-4 lg:left-4 w-8  rounded-full bg-white dark:bg-black flex items-center justify-center">
+                <div className="h-3 w-3 rounded-full bg-blue-500 border border-neutral-300 dark:border-neutral-700 p-2" />
               </div>
               <h3 className="hidden lg:block text-2xl lg:pl-20 lg:text-4xl font-bold text-neutral-500 dark:text-neutral-500 ">
-                <Image src={item.title} alt="image" height={250} width={250} className="max-h-32 max-w-32" />
+                <Image src={item.title} alt="image" height={250} width={250} className="max-h-28 max-w-28" />
               </h3>
             </div>
 
             <div className="relative pl-20 pr-4 lg:pl-4 w-full">
               <h3 className="lg:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
-                <Image src={item.title} alt="image" height={250} width={250} className="max-h-32 max-w-32" />
+                <Image src={item.title} alt="image" height={250} width={250} className="max-h-28 max-w-28" />
               </h3>
               <Link href={item.navigateURL}>{item.content}{" "}</Link>
             </div>
