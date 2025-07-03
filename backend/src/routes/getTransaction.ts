@@ -10,7 +10,10 @@ const getTransaction = (async(req : Request, res : Response)=>{
         const skip= limit*page
         const transaction = await prisma.transactionHistory.findMany({
             skip: skip,
-            take: limit
+            take: limit,
+            orderBy:{
+                createdAt: "desc"
+            }
         })
         const totalTransaction= await prisma.transactionHistory.count()
         const hasPreviousPage= page>0

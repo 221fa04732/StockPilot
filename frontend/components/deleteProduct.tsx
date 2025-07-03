@@ -2,7 +2,6 @@
 
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -16,8 +15,9 @@ import { useState } from "react"
 import axios from 'axios'
 import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
+import { mutate } from "swr"
 
-export function DeleteProduct({id} : {id: string}) {
+export function DeleteProduct({id, page, searchWord} : {id: string, page: number, searchWord: string}) {
     const [loader, setLoader]= useState<number>(1)
     const deleteproduct = async()=>{
         setLoader(0)
@@ -27,6 +27,7 @@ export function DeleteProduct({id} : {id: string}) {
             })
             if (response) {
                 toast.message("Product Deleted successful")
+                mutate(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

@@ -16,8 +16,9 @@ import { useState } from "react"
 import axios from 'axios'
 import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
+import { mutate } from "swr"
 
-export function BuyProduct({id} : {id: string}) {
+export function BuyProduct({id, page, searchWord} : {id: string, page: number, searchWord: string}) {
     const [loader, setLoader]= useState<number>(1)
     const [quantity, setQuantity]= useState<number>(0)
     const buyproduct = async()=>{
@@ -29,6 +30,7 @@ export function BuyProduct({id} : {id: string}) {
             })
             if (response) {
                 toast.message("Congratulations! Purchase successful")
+                mutate(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

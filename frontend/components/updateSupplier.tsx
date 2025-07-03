@@ -18,8 +18,9 @@ import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
 import { SupplierType } from "@/app/supplier/page"
 import { Edit2 } from "lucide-react"
+import { mutate } from "swr"
 
-export function EditSupplier({supplier} : {supplier : SupplierType}) {
+export function EditSupplier({supplier, page, searchWord} : {supplier : SupplierType, page:number, searchWord:string}) {
     const [loader, setLoader]= useState<number>(1)
     const [name, setName]= useState<string>(supplier.name)
     const [product, setProduct]= useState<string>(supplier.product)
@@ -37,6 +38,7 @@ export function EditSupplier({supplier} : {supplier : SupplierType}) {
             })
             if (response) {
                 toast.message("Congratulations! updated successful")
+                mutate(`${BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

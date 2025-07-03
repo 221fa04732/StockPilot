@@ -17,8 +17,9 @@ import axios from 'axios'
 import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
 import { ProductType } from "./productCard"
+import { mutate } from "swr"
 
-export function EditProduct({product} : {product : ProductType}) {
+export function EditProduct({product, page, searchWord} : {product : ProductType, page: number, searchWord: string}) {
     const [loader, setLoader]= useState<number>(1)
     const [name, setName]= useState<string>(product.name)
     const [category, setCategory]= useState<string>(product.category)
@@ -34,6 +35,7 @@ export function EditProduct({product} : {product : ProductType}) {
             })
             if (response) {
                 toast.message("Congratulations! updated successful")
+                mutate(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

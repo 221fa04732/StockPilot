@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import { EditSupplier } from './updateSupplier';
 import { DeleteSupplier } from './deleteSupplier';
 
-export default function SupplierCard({ supplier }: { supplier: SupplierType }) {
+export default function SupplierCard({ supplier, page, searchWord }: { supplier: SupplierType, page:number, searchWord: string }) {
   return (
     <div key={supplier.id} className="w-full p-0 rounded-lg overflow-hidden bg-gray-900/50 border border-gray-800 hover:bg-gray-800/30 transition-colors duration-200">
       <div className="p-4">
@@ -35,8 +35,8 @@ export default function SupplierCard({ supplier }: { supplier: SupplierType }) {
               {format(new Date(supplier.createdAt), 'MMM d, yyyy')}
             </span>
             <div className="flex space-x-2">
-              <EditSupplier supplier={supplier}/>
-              <DeleteSupplier id={supplier.id} />
+              <EditSupplier supplier={supplier} page={page} searchWord={searchWord}/>
+              <DeleteSupplier id={supplier.id} page={page} searchWord={searchWord}/>
             </div>
           </div>
         </div>

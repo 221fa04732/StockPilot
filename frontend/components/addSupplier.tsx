@@ -16,8 +16,9 @@ import { useState } from "react"
 import axios from 'axios'
 import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
+import { mutate } from "swr"
 
-export function SupplierDialogDemo() {
+export function SupplierDialogDemo({page, searchWord} : {page: number, searchWord: string}) {
     const [loader, setLoader]= useState<number>(1)
     const [name, setName]= useState<string>("")
     const [email, setEmail]= useState<string>("")
@@ -34,6 +35,7 @@ export function SupplierDialogDemo() {
             })
             if (response) {
                 toast.message("supplier added successfully!")
+                mutate(`${BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

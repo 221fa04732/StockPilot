@@ -9,6 +9,9 @@ const dashboard = (async(req : Request, res : Response)=>{
         const product= await prisma.product.findMany({
             where : {
                 delete : false
+            },
+            orderBy:{
+                createdAt : "desc"
             }
         });
         const supplier= await prisma.supplier.count({
@@ -39,7 +42,7 @@ const dashboard = (async(req : Request, res : Response)=>{
         product.forEach((item)=>{
             activeProduct++;
             totalInventoryValue+=(item.price*item.quantity);
-            if(item.quantity<=5){
+            if(item.quantity<=100){
                 lowStockItems.push(item)
             } 
         })

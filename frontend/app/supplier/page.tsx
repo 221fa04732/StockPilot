@@ -11,6 +11,7 @@ import { SupplierDialogDemo } from '@/components/addSupplier'
 import PaginationBtn from '@/components/paginationBtn'
 import { SupplierLoader } from '@/components/supplierLoader'
 import SupplierCard from '@/components/supplierCard'
+import useSWR from 'swr'
 
 export interface SupplierType {
   id: string;
@@ -26,33 +27,16 @@ export interface SupplierResponse {
   hasNextPage: boolean;
   hasPreviousPage: boolean;
 }
+const fetcher= (url: string) => axios.get(url).then(res => res.data)
 
 export default function Product() {
-  const [supplierData, setSupplierData] = useState<SupplierResponse>()
-  const [loading, setLoading] = useState<number>(0)
   const [page, setPage] = useState<number>(0)
   const [word, setWord]= useState<string>("")
   const searchWord= useDebounce(word)
-  useEffect(() => {
-    setLoading(0)
-    const fetchSupplier = async () => {
-      try {
-        const response = await axios.get(`${BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
-        if (response) {
-          setSupplierData(response.data)
-        }
-        setLoading(2);
-      } catch (e) {
-        setLoading(1)
-        toast.error("Failed to load supplier")
-      }
-    }
-    fetchSupplier()
-    const interval = setInterval(fetchSupplier, 5000)
-    return () => clearInterval(interval)
-  }, [searchWord, page])
+  const {data, error, isLoading} : {data: SupplierResponse, error: any, isLoading : boolean}= useSWR(`${BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`, fetcher)
 
-  if (loading === 1) {
+  if(error){
+    toast.error("An unexpected error occurred!")
     return <Error />
   }
 
@@ -64,18 +48,18 @@ export default function Product() {
         placeholder='Search supplier' 
         className='bg-white/20 text-white placeholder:text-gray-300 md:col-span-2 focus:bg-white/30 focus:ring-2 focus:ring-blue-400/50 border-transparent'
       />
-      <SupplierDialogDemo />
+      <SupplierDialogDemo page={page} searchWord={searchWord}/>
     </div>
-    {loading===0 ? <SupplierLoader /> : 
+    {isLoading ? <SupplierLoader /> : 
     <div className='w-full flex flex-col justify-center items-center'>
       <div className='w-10/12 flex flex-col gap-4'>
-        {supplierData?.supplier.map((item)=>(
-          <SupplierCard supplier={item} />
+        {data?.supplier.map((item)=>(
+          <SupplierCard supplier={item} page={page} searchWord={searchWord} />
         ))}
       </div>
       <div className="flex gap-4 mt-6">
-          <PaginationBtn onClick={()=> setPage(page-1)} name={"Previous"} enable={supplierData?.hasPreviousPage || false}/>
-          <PaginationBtn onClick={()=> setPage(page+1)} name={"Next"} enable={supplierData?.hasNextPage || false} />
+          <PaginationBtn onClick={()=> setPage(page-1)} name={"Previous"} enable={data?.hasPreviousPage || false}/>
+          <PaginationBtn onClick={()=> setPage(page+1)} name={"Next"} enable={data?.hasNextPage || false} />
       </div>
     </div>}
   </div>)

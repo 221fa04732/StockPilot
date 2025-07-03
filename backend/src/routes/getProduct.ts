@@ -25,7 +25,10 @@ const getProduct = (async(req : Request, res : Response)=>{
                 }]
             },
             skip: skip,
-            take: limit
+            take: limit,
+            orderBy:{
+                createdAt : "desc"
+            }
         })
 
         const toalProduct = await prisma.product.count({

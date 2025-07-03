@@ -17,8 +17,9 @@ import axios from 'axios'
 import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
 import { Trash2 } from "lucide-react"
+import { mutate } from "swr"
 
-export function DeleteSupplier({id} : {id: string}) {
+export function DeleteSupplier({id, page, searchWord} : {id: string, page: number, searchWord: string}) {
     const [loader, setLoader]= useState<number>(1)
     const deletesupplier = async()=>{
         setLoader(0)
@@ -28,6 +29,7 @@ export function DeleteSupplier({id} : {id: string}) {
             })
             if (response) {
                 toast.message("Supplier Deleted successful")
+                mutate(`${BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

@@ -13,7 +13,7 @@ export interface ProductType {
   createdAt: string;
 }
 
-export default function ProductCard({product} : {product: ProductType}){
+export default function ProductCard({product, page, searchWord} : {product: ProductType, page: number, searchWord: string}){
   const formattedDate = new Date(product.createdAt).toLocaleDateString();
   const isOutOfStock = product.quantity <= 0;
   return (
@@ -41,10 +41,10 @@ export default function ProductCard({product} : {product: ProductType}){
           </div>
         </div>
         <div className="grid grid-cols-4 gap-2 pt-3 border-t border-gray-800">
-          <BuyProduct id={product.id} />
-          <SellProduct id={product.id} initialQuantity={product.quantity} />
-          <EditProduct product={product}/>
-          <DeleteProduct id={product.id}/>
+          <BuyProduct id={product.id} page={page} searchWord={searchWord} />
+          <SellProduct id={product.id} initialQuantity={product.quantity} page={page} searchWord={searchWord}/>
+          <EditProduct product={product} page={page} searchWord={searchWord}/>
+          <DeleteProduct id={product.id} page={page} searchWord={searchWord}/>
         </div>
       </div>
     </div>

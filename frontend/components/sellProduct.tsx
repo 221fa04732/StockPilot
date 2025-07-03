@@ -16,8 +16,9 @@ import { useState } from "react"
 import axios from 'axios'
 import { BACKEND_URL } from "@/config"
 import { toast } from "sonner"
+import { mutate } from "swr"
 
-export function SellProduct({id, initialQuantity} : {id: string, initialQuantity: number}) {
+export function SellProduct({id, initialQuantity, page, searchWord} : {id: string, initialQuantity: number, page: number, searchWord: string}) {
     const [loader, setLoader]= useState<number>(1)
     const [quantity, setQuantity]= useState<number>(0)
     const sellproduct = async()=>{
@@ -33,6 +34,7 @@ export function SellProduct({id, initialQuantity} : {id: string, initialQuantity
             })
             if (response) {
                 toast.message("Congratulations! Sold successful")
+                mutate(`${BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){
@@ -64,7 +66,7 @@ export function SellProduct({id, initialQuantity} : {id: string, initialQuantity
             </DialogClose>
             <Button className="bg-gray-900 hover:bg-gray-800 hover:text-white shadow-gray-950 cursor-pointer" onClick={()=>{
                 sellproduct()
-            }}>{loader===0 ? "loading..." : "buy product"}</Button>
+            }}>{loader===0 ? "loading..." : "sell product"}</Button>
           </DialogFooter>
         </DialogContent>
       </div>
