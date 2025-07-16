@@ -1,6 +1,7 @@
 
 import Image from "next/image"
 import Subscribe from "./subscriber"
+import Link from "next/link"
 
 export default function Footer(){
     return(<div className="w-full bg-neutral-950 relative flex justify-center items-center">
@@ -24,7 +25,7 @@ export default function Footer(){
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start text-blue-400 underline text-base">
                         <span className="hover:text-blue-500 cursor-pointer">Legal</span>
-                        <span className="hover:text-blue-500 cursor-pointer">Terms & Conditions</span>
+                        <Link href={'/terms-conditions'} className="hover:text-blue-500 cursor-pointer">Terms & Conditions</Link>
                         <span className="hover:text-blue-500 cursor-pointer">Privacy Policy</span>
                     </div>
                 </div>
