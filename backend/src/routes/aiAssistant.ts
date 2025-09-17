@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "../../src/generated/prisma";
 import OpenAI from 'openai';
+import { GoogleGenAI } from "@google/genai";
 
 const prisma = new PrismaClient()
 
@@ -33,21 +34,42 @@ const aiAssistant = async(req: Request, res: Response) =>{
             - If the user's question is not related to the data or cannot be answered from it, respond with: "⚠️ Sorry, the data does not support this query."
             - Be concise and clear in your response.
             `;
+        // const openai = new OpenAI({
+        //     baseURL: 'https://openrouter.ai/api/v1',
+        //     apiKey: process.env.OPEN_API_KEY,
+        // });
+        // const response = await openai.chat.completions.create({
+        //     model: 'openai/gpt-4o',
+        //     max_tokens: 1000,
+        //     messages: [
+        //        { role: 'system', content: systemPrompt },
+        //         { role: 'user', content: userQuery },
+        //     ],
+        // });
+        // res.status(201).json({
+        //     answer: response.choices[0].message.content
+        // })
 
-        const openai = new OpenAI({
-            baseURL: 'https://openrouter.ai/api/v1',
-            apiKey: process.env.OPEN_API_KEY,
+        const ai = new GoogleGenAI({
+            apiKey : process.env.GENAI_API_KEY as string
         });
-        const response = await openai.chat.completions.create({
-            model: 'openai/gpt-4o',
-            max_tokens: 1000,
-            messages: [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: userQuery },
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: [{
+                    role : "model",
+                    parts : [{
+                        text : systemPrompt
+                    }]
+            },{
+                    role : "user", 
+                    parts : [{
+                        text : userQuery
+                    }]
+                }
             ],
         });
         res.status(201).json({
-            answer: response.choices[0].message.content
+            answer: response.text
         })
     }
     catch(e){

@@ -21,7 +21,7 @@ export default function Footer(){
                     <div className="flex flex-col justify-center items-center md:items-start text-blue-400 underline text-base">
                         <span className="hover:text-blue-500 cursor-pointer">Links</span>
                         <span className="hover:text-blue-500 cursor-pointer">App</span>
-                        <span className="hover:text-blue-500 cursor-pointer">Report</span>
+                        <Link href={'/report'} className="hover:text-blue-500 cursor-pointer">Report</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start text-blue-400 underline text-base">
                         <span className="hover:text-blue-500 cursor-pointer">Legal</span>
