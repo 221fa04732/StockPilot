@@ -14,6 +14,8 @@
     "prisma": "^6.10.1"
   },
   "dependencies": {
+    "@google/genai": "^1.20.0",
+    "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.10.1",
     "@types/cors": "^2.8.19",
     "@types/dotenv": "^8.2.3",
@@ -21,6 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.0.0",
     "express": "^5.1.0",
+    "genai": "^0.0.18",
     "openai": "^5.8.2",
     "zod": "^3.25.67"
   }

@@ -17,7 +17,7 @@ export default function AI() {
     setAnswer("")
     setIsLoading(true)
     try{
-        const response= await axios.post('https://stockpilot.todoapplication.tech/api/v1/ai/query',{
+        const response= await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/ai/query`,{
             userQuery: ask
         });
         if(response){
