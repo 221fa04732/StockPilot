@@ -15,21 +15,22 @@ import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import axios from 'axios'
 import { toast } from "sonner"
-import { mutate } from "swr"
+import { useSWRConfig } from "swr"
 
 export function BuyProduct({id, page, searchWord} : {id: string, page: number, searchWord: string}) {
+    const { mutate } = useSWRConfig()
     const [loader, setLoader]= useState<number>(1)
     const [quantity, setQuantity]= useState<number>(0)
     const buyproduct = async()=>{
         setLoader(0)
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product/buy`,{
+            const response = await axios.post(`/api/stockpilot/api/v1/product/buy`,{
                 quantity : quantity,
                 id: id
             })
             if (response) {
                 toast.message("Congratulations! Purchase successful")
-                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
+                mutate(`/api/stockpilot/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

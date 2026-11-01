@@ -16,9 +16,10 @@ import { useState } from "react"
 import axios from 'axios'
 import { toast } from "sonner"
 import { ProductType } from "./productCard"
-import { mutate } from "swr"
+import { useSWRConfig } from "swr"
 
 export function EditProduct({product, page, searchWord} : {product : ProductType, page: number, searchWord: string}) {
+    const { mutate } = useSWRConfig()
     const [loader, setLoader]= useState<number>(1)
     const [name, setName]= useState<string>(product.name)
     const [category, setCategory]= useState<string>(product.category)
@@ -26,7 +27,7 @@ export function EditProduct({product, page, searchWord} : {product : ProductType
     const updateproduct = async()=>{
         setLoader(0)
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product/update`,{
+            const response = await axios.post(`/api/stockpilot/api/v1/product/update`,{
                 id : product.id,
                 name : name,
                 category : category,
@@ -34,7 +35,7 @@ export function EditProduct({product, page, searchWord} : {product : ProductType
             })
             if (response) {
                 toast.message("Congratulations! updated successful")
-                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/product?page=${page}&search=${searchWord}`)
+                mutate(`/api/stockpilot/api/v1/product?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

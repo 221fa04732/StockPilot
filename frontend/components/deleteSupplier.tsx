@@ -16,19 +16,20 @@ import { useState } from "react"
 import axios from 'axios'
 import { toast } from "sonner"
 import { Trash2 } from "lucide-react"
-import { mutate } from "swr"
+import { useSWRConfig } from "swr"
 
 export function DeleteSupplier({id, page, searchWord} : {id: string, page: number, searchWord: string}) {
+    const { mutate } = useSWRConfig()
     const [loader, setLoader]= useState<number>(1)
     const deletesupplier = async()=>{
         setLoader(0)
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier/delete`,{
+            const response = await axios.post(`/api/stockpilot/api/v1/supplier/delete`,{
                 id: id
             })
             if (response) {
                 toast.message("Supplier Deleted successful")
-                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
+                mutate(`/api/stockpilot/api/v1/supplier?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

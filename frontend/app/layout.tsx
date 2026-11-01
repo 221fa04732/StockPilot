@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import { Toaster } from "sonner";
+import { ClerkProvider } from "@clerk/nextjs";
+import AuthenticatedCache from "@/components/authenticatedCache";
 
 export const metadata: Metadata = {
   title: "Dashboard | StockPilot",
@@ -19,9 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body>
-          <Header />
-          {children}
-          <Toaster />
+          <ClerkProvider>
+            <AuthenticatedCache>
+              <Header />
+              {children}
+              <Toaster />
+            </AuthenticatedCache>
+          </ClerkProvider>
         </body>
     </html>
   );

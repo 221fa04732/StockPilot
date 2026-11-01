@@ -36,7 +36,7 @@ export interface DashboardDataType {
 const fetcher= (url: string)=> axios.get(url).then(res=> res.data)
 
 export default function Dashboard() {
-    const {data, error, isLoading} : {data : DashboardDataType, error: any, isLoading: boolean}= useSWR(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/dashboard`, fetcher)
+    const {data, error, isLoading} : {data : DashboardDataType, error: any, isLoading: boolean}= useSWR(`/api/stockpilot/api/v1/dashboard`, fetcher)
 
     if(error){ 
         toast.error("An unexpected error occurred!");
