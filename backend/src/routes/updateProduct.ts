@@ -1,40 +1,18 @@
-import { Request, Response } from "express";
-import { PrismaClient } from "../../src/generated/prisma";
-import { productType } from "../types/productType";
-import { UpdateproductSchema } from "../validate/productSchema";
+import { Request, Response } from 'express';
+import { PrismaClient } from '../generated/prisma';
+import { UpdateproductSchema } from '../validate/productSchema';
+import { ownerIdFrom } from '../security/requireInternalAuth';
+const prisma = new PrismaClient();
 
-const prisma= new PrismaClient()
-
-const updateProduct = (async(req : Request, res : Response)=>{
-    const data : productType = req.body;
-    try{
-        const validate = UpdateproductSchema.safeParse(data);
-        if(!validate.success){
-            res.status(400).json({
-                msg: "Invalid input"
-            })
-            return;
-        }
-        await prisma.product.update({
-            data: {
-                name : data.name,
-                category : data.category,
-                price : data.price
-            },
-            where : {
-                id: data.id
-            }
-        });
-        res.status(201).json({
-            msg : "Product updated"
-        })
-    }
-    catch(e){
-        console.error(e);
-        res.status(500).json({
-            msg: "Server error"
-        })
-    }
-})
-
-export default updateProduct;
+export default async function updateProduct(req: Request, res: Response) {
+  const parsed = UpdateproductSchema.safeParse(req.body);
+  if (!parsed.success) { res.status(400).json({ msg: 'Invalid input' }); return; }
+  const { id, ...data } = parsed.data;
+  try {
+    const result = await prisma.product.updateMany({
+      where: { id, ownerId: ownerIdFrom(res), delete: false }, data,
+    });
+    if (!result.count) { res.status(404).json({ msg: 'Product not found' }); return; }
+    res.status(200).json({ msg: 'Product updated' });
+  } catch (error) { console.error(error); res.status(500).json({ msg: 'Server error' }); }
+}

@@ -17,9 +17,10 @@ import axios from 'axios'
 import { toast } from "sonner"
 import { SupplierType } from "@/app/supplier/page"
 import { Edit2 } from "lucide-react"
-import { mutate } from "swr"
+import { useSWRConfig } from "swr"
 
 export function EditSupplier({supplier, page, searchWord} : {supplier : SupplierType, page:number, searchWord:string}) {
+    const { mutate } = useSWRConfig()
     const [loader, setLoader]= useState<number>(1)
     const [name, setName]= useState<string>(supplier.name)
     const [product, setProduct]= useState<string>(supplier.product)
@@ -28,7 +29,7 @@ export function EditSupplier({supplier, page, searchWord} : {supplier : Supplier
     const updatesupplier = async()=>{
         setLoader(0)
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier/update`,{
+            const response = await axios.post(`/api/stockpilot/api/v1/supplier/update`,{
                 id : supplier.id,
                 name : name,
                 email : email,
@@ -37,7 +38,7 @@ export function EditSupplier({supplier, page, searchWord} : {supplier : Supplier
             })
             if (response) {
                 toast.message("Congratulations! updated successful")
-                mutate(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/supplier?page=${page}&search=${searchWord}`)
+                mutate(`/api/stockpilot/api/v1/supplier?page=${page}&search=${searchWord}`)
             }
         } 
         catch(e){

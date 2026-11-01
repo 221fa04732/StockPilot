@@ -1,41 +1,18 @@
-import { Request, Response } from "express";
-import { PrismaClient } from "../../src/generated/prisma";
-import { supplierType } from "../types/supplierType";
-import { supplierSchema } from "../validate/supplierSchema";
+import { Request, Response } from 'express';
+import { PrismaClient } from '../generated/prisma';
+import { updateSupplierSchema } from '../validate/supplierSchema';
+import { ownerIdFrom } from '../security/requireInternalAuth';
+const prisma = new PrismaClient();
 
-const prisma= new PrismaClient()
-
-const updateSupplier = (async(req : Request, res : Response)=>{
-    const data : supplierType = req.body;
-    try{
-        const validate = supplierSchema.safeParse(data);
-        if(!validate.success){
-            res.status(400).json({
-                msg: "Invalid input"
-            })
-            return;
-        }
-        await prisma.supplier.update({
-            data: {
-                name : data.name,
-                email : data.email,
-                phone: data.phone,
-                product: data.product
-            },
-            where : {
-                id: data.id
-            }
-        });
-        res.status(201).json({
-            msg : "Supplier info updated"
-        })
-    }
-    catch(e){
-        console.error(e);
-        res.status(500).json({
-            msg: "Server error"
-        })
-    }
-})
-
-export default updateSupplier;
+export default async function updateSupplier(req: Request, res: Response) {
+  const parsed = updateSupplierSchema.safeParse(req.body);
+  if (!parsed.success) { res.status(400).json({ msg: 'Invalid input' }); return; }
+  const { id, ...data } = parsed.data;
+  try {
+    const result = await prisma.supplier.updateMany({
+      where: { id, ownerId: ownerIdFrom(res), delete: false }, data,
+    });
+    if (!result.count) { res.status(404).json({ msg: 'Supplier not found' }); return; }
+    res.status(200).json({ msg: 'Supplier updated' });
+  } catch (error) { console.error(error); res.status(500).json({ msg: 'Server error' }); }
+}

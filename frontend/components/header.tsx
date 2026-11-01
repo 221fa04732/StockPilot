@@ -44,6 +44,10 @@ export default function Header(){
             </div>
             <div className='md:hidden'>
                 <Dropdown route={route} />
+            </div>
+            <div className='text-white'>
+                <SignedOut><SignInButton /></SignedOut>
+                <SignedIn><UserButton /></SignedIn>
             </div>    
         </div>
     </header>)
